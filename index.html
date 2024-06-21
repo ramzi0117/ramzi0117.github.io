@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek & Isi Khodam</title>
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW7iITd7C_WgR_gIREHN0W1oBMToo-n8MkvgS198dhpq3trO3hiN71Zn7P&s=10');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .ig-button {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid white;
+            padding: 5px 10px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .ig-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .additional-input {
+            display: none;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .modal-content h2 {
+            color: black;
+        }
+        .modal-content button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body onload="showPopup()">
+    <div class="container">
+        <h1>Cek & Isi Khodam</h1>
+        <input type="text" id="nama" placeholder="Masukkan Nama Anda">
+        <div id="additionalInputContainer" class="additional-input">
+            <input type="text" id="khodamInput" placeholder="Masukkan Nama Khodam">
+            <button onclick="updateKhodam()">Isi Khodam</button>
+        </div>
+        <button onclick="cekKhodam()">Cek</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <a href="https://www.instagram.com/ramzi.alfz?igshid=MXY2MzR4dXRnZDFieg==" class="ig-button">Instagram | ramzi.alfz</a>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>Follow Instagram ramzi.alfz</h2>
+            <p>Kunjungi halaman Instagram kami untuk informasi lebih lanjut.</p>
+            <a href="https://www.instagram.com/ramzi.alfz?igshid=MXY2MzR4dXRnZDFieg==" class="ig-button">Follow Sekarang</a>
+            <button onclick="closeModal()">Nanti</button>
+        </div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function cekKhodam() {
+            const namaInput = document.getElementById('nama').value.trim();
+            const nama = namaInput.replace(/[.,]/g, ''); // Hilangkan titik dan koma dari nama
+
+            const khodamList = [
+                "kopi item", "kapibara", "telor puyuh", "sendok emas", "kucing pasar", "rendang kentang",
+                "ayam kuning (opor)", "kerapu", "kura-kura batu", "kadal gurun", "burung gagak", "ikan paus",
+                "laba-laba ungu", "ular hijau", "bebek angsa", "singa laut", "kelinci putih", "gajah mini",
+                "babi hutan", "kerbau hitam", "harimau kecubung", "selamat kopling", "rem jet", "singa lpg 3 kg",
+                "termos berapi", "gas ijo melon", "kadal tempurung", "kompor dingin", "piring kaca", "akuarium pecah",
+                "arwana ijo", "lele kuning", "laba-laba sunda", "gayung oren", "daun singkong", "jaket kulit kadal",
+                "buaya darat", "roko kretek", "gitar spanyol", "garam halus", "sate mamat", "gunung kembar", "kodam kosong"
+            ];
+            const khodamKerenList = [
+                "macan", "monyet itam", "kuda terbang", "harimau jawa", "naga putih", "harimau putih",
+                "rusa api", "singa", "naga superior", "raja harimau", "raja monyet ijo"
+            ];
+            const originList = [
+                "berasal dari leluhur", "teman dari kecil", "ilmu hitam", "taman baru", "pelindung",
+                "teman makan", "orang tua", "musuh bebuyutan", "teman khayalan", "guru spiritual",
+                "penunggu rumah", "teman arwah", "penjaga malam", "penunggu pohon", "roh gunung",
+                "penunggu sungai", "arwah penasaran", "jimat warisan", "roh penjaga desa", "makhluk gaib",
+                "arwah pendamping", "penunggu hutan", "arwah penjaga pantai", "penunggu rumah kosong"
+            ];
+
+            let khodam, origin;
+
+            if (namaInput.endsWith(',')) {
+                document.getElementById('additionalInputContainer').classList.remove('additional-input');
+                document.getElementById('output').innerText = `Khodam kamu kosong, gift/follow untuk pengisian khodam`;
+                return;
+            } else {
+                document.getElementById('additionalInputContainer').classList.add('additional-input');
+            }
+
+            if (namaInput.endsWith('.')) {
+                khodam = khodamKerenList[Math.floor(Math.random() * khodamKerenList.length)];
+            } else {
+                khodam = khodamList[Math.floor(Math.random() * khodamList.length)];
+            }
+
+            origin = "berasal dari " + originList[Math.floor(Math.random() * originList.length)];
+
+            document.getElementById('output').innerText = `Khodam kamu adalah ${khodam}, ${origin}`;
+        }
+
+        function updateKhodam() {
+            const khodamInput = document.getElementById('khodamInput').value.trim();
+            document.getElementById('output').innerText = `Selamat, khodam kamu menjadi ${khodamInput}, berasal dari live TikTok`;
+        }
+    </script>
+</body>
+</html>
