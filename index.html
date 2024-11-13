@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Pernyataan Cinta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya Umum */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Surat */
+        .letter-container {
+            width: 21cm;
+            height: auto;
+            background-color: #ffffff;
+            padding: 3cm 2cm;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            position: relative;
+            text-align: left;
+            display: none; /* Hide initially */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .header .divider {
+            margin: 20px 0;
+            border-top: 1px solid #333;
+        }
+
+        /* Isi Surat */
+        .content {
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Bagian Tanda Tangan */
+        .signature-section {
+            margin-top: 40px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 1px;
+            background-color: #000;
+            margin-top: 30px;
+        }
+
+        .signature {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Tombol */
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px; /* Meningkatkan jarak tombol dari surat */
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .approve-btn {
+            background-color: #28a745;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <div class="header">
+            <h1>Surat Pernyataan Perasaan</h1>
+            <p>Nomor: 001/CINTA/2023</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="content">
+            <p><b>Pihak Pertama:</b> Ramzi</p>
+            <p>Saya yang bertanda tangan di bawah ini:</p>
+            <p><b>Nama:</b> Ramzi <br> <b>Umur:</b> 19 <br> <b>Hobi:</b> Mancing</p>
+            <p>Selanjutnya disebut sebagai <b>Pihak Pertama</b>.</p>
+
+            <p><b>Pihak Kedua:</b> <span id="secondPartyNameTop">[Nama Pihak Kedua]</span></p>
+            <p>Menyatakan perasaan yang tulus dan mendalam kepada:</p>
+            <p><b>Nama:</b> <span id="secondPartyName">[Nama Pihak Kedua]</span> <br> <b>Umur:</b> <span id="secondPartyAge">[Umur Pihak Kedua]</span> <br> <b>Hobi:</b> <span id="secondPartyHobby">[Hobi Pihak Kedua]</span></p>
+            <p>Selanjutnya disebut sebagai <b>Pihak Kedua</b>.</p>
+
+            <p>Dengan ini menyatakan:</p>
+            <ul>
+                <li>Pihak Pertama memiliki perasaan cinta yang tulus kepada Pihak Kedua.</li>
+                <li>Pihak Pertama berjanji untuk menjalankan hubungan dengan penuh komitmen dan kesetiaan.</li>
+                <li>Pihak Pertama akan selalu mendukung Pihak Kedua dalam berbagai keadaan.</li>
+            </ul>
+
+            <p>Surat ini dibuat dengan penuh ketulusan tanpa paksaan dari pihak manapun sebagai bukti kesungguhan Pihak Pertama kepada Pihak Kedua.</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature">
+                <p>Yang bertanda tangan</p>
+                <p><span class="signature-line"></span></p>
+                <p>Ramzi <br> <i>Pihak Pertama</i></p>
+            </div>
+            <div class="signature">
+                <p>Yang bertanda tangan</p>
+                <p><span class="signature-line"></span></p>
+                <p><span id="secondPartyNameSignature"></span> <br> <i>Pihak Kedua</i></p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="approve-btn" onclick="approve()">Menyetujui Perjanjian</button>
+            <button class="reject-btn" onclick="reject()">Tidak Menyetujui Perjanjian</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function approve() {
+            Swal.fire({
+                title: 'Ini Seriusan?',
+                text: 'Haha',
+                icon: 'question',
+                confirmButtonText: 'Lanjut'
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Gak Serius Juga Gak Papa Asli',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Dengan ini saya Ramzi menyatakan...',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Akan melakukan semuanya dengan sesungguh-sungguhnya',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Dan berjanji untuk tidak melakukan hal yang bodoh',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Eh kecepetan ga sih?',
+                    text: 'Yaudah kalau mau next kontrak boleh',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Tapi kalau ga mau juga gapapa',
+                    confirmButtonText: 'Lanjut'
+                });
+            }).then(() => {
+                return Swal.fire({
+                    title: 'Pilih ya',
+                    showDenyButton: true,
+                    confirmButtonText: 'Lanjut Kontrak',
+                    denyButtonText: 'Temenan Aja'
+                });
+            }).then((result) => {
+                const secondPartyName = document.getElementById('secondPartyName').innerText;
+                const secondPartyAge = document.getElementById('secondPartyAge').innerText;
+                const secondPartyHobby = document.getElementById('secondPartyHobby').innerText;
+                
+                const actionText = result.isConfirmed
+                    ? "menyatakan akan melanjutkan kontrak dengan Ramzi"
+                    : "menyatakan untuk mulai berteman dengan Ramzi";
+                const message = `Saya ${secondPartyName} (pihak kedua), umur ${secondPartyAge} dan hobi ${secondPartyHobby}, ${actionText}, dimulai pada ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+
+                const whatsappURL = `https://wa.me/6289683099772?text=${encodeURIComponent(message)}`;
+                window.location.href = whatsappURL;
+            });
+        }
+
+        function reject() {
+            const modal = document.getElementById('jumpscareModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 3000); // Jumpscare modal akan hilang setelah 3 detik
+        }
+
+        Swal.fire({
+            title: 'Masukkan Nama Pihak Kedua',
+            input: 'text',
+            inputPlaceholder: 'Nama Pihak Kedua',
+            showCancelButton: false,
+            confirmButtonText: 'Lanjutkan',
+            preConfirm: (secondPartyName) => {
+                if (!secondPartyName) {
+                    Swal.showValidationMessage('Nama pihak kedua harus diisi!');
+                }
+                return secondPartyName;
+            }
+        }).then((result) => {         if (result.isConfirmed) {
+            const secondPartyName = result.value;
+            document.getElementById('secondPartyName').innerText = secondPartyName;
+            document.getElementById('secondPartyNameTop').innerText = secondPartyName;
+            document.getElementById('secondPartyNameSignature').innerText = secondPartyName;
+
+            // Pop-up untuk input umur pihak kedua
+            Swal.fire({
+                title: 'Masukkan Umur Pihak Kedua',
+                input: 'number',
+                inputPlaceholder: 'Umur Pihak Kedua',
+                showCancelButton: false,
+                confirmButtonText: 'Lanjutkan',
+                preConfirm: (secondPartyAge) => {
+                    if (!secondPartyAge) {
+                        Swal.showValidationMessage('Umur pihak kedua harus diisi!');
+                    }
+                    return secondPartyAge;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const secondPartyAge = result.value;
+                    document.getElementById('secondPartyAge').innerText = secondPartyAge;
+
+                    // Pop-up untuk input hobi pihak kedua
+                    Swal.fire({
+                        title: 'Masukkan Hobi Pihak Kedua',
+                        input: 'text',
+                        inputPlaceholder: 'Hobi Pihak Kedua',
+                        showCancelButton: false,
+                        confirmButtonText: 'Selesai',
+                        preConfirm: (secondPartyHobby) => {
+                            if (!secondPartyHobby) {
+                                Swal.showValidationMessage('Hobi pihak kedua harus diisi!');
+                            }
+                            return secondPartyHobby;
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const secondPartyHobby = result.value;
+                            document.getElementById('secondPartyHobby').innerText = secondPartyHobby;
+
+                            // Tampilkan surat
+                            document.querySelector('.letter-container').style.display = 'block';
+                        }
+                    });
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
+
